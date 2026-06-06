@@ -121,10 +121,9 @@ if selected_season != 'All':
 # ─────────────────────────────────────────────
 # Header
 # ─────────────────────────────────────────────
-col_title, col_logo = st.columns([4, 1])
-with col_title:
-    st.title("🐦 Bird Species Analysis Dashboard")
-    st.markdown("A comprehensive look into bird biodiversity across **Forest** and **Grassland** habitats in US National Parks.")
+st.image("dashboard/banner.png", use_container_width=True)
+st.markdown("<h1 style='text-align: center;'>🐦 Bird Species Analysis Dashboard</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 1.1em;'>A comprehensive look into bird biodiversity across <b>Forest</b> and <b>Grassland</b> habitats in US National Parks.</p>", unsafe_allow_html=True)
 st.divider()
 
 # ─────────────────────────────────────────────
