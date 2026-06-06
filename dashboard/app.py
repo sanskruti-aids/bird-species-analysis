@@ -121,9 +121,35 @@ if selected_season != 'All':
 # ─────────────────────────────────────────────
 # Header
 # ─────────────────────────────────────────────
-st.image("dashboard/banner.png", use_container_width=True)
-st.markdown("<h1 style='text-align: center;'>🐦 Bird Species Analysis Dashboard</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; font-size: 1.1em;'>A comprehensive look into bird biodiversity across <b>Forest</b> and <b>Grassland</b> habitats in US National Parks.</p>", unsafe_allow_html=True)
+import base64
+def get_base64_image(image_path):
+    with open(image_path, "rb") as img_file:
+        return base64.b64encode(img_file.read()).decode()
+
+img_base64 = get_base64_image("dashboard/banner.png")
+
+st.markdown(f"""
+<div style="
+    background-image: url('data:image/png;base64,{img_base64}');
+    background-size: cover;
+    background-position: center;
+    height: 220px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.3); /* Dark overlay for better text readability */
+    margin-bottom: 20px;
+">
+    <h1 style="color: white; margin-bottom: 5px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">🐦 Bird Species Analysis Dashboard</h1>
+    <p style="font-size: 1.2em; font-weight: 500; padding: 0 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">
+        A comprehensive look into bird biodiversity across <b>Forest</b> and <b>Grassland</b> habitats in US National Parks.
+    </p>
+</div>
+""", unsafe_allow_html=True)
 st.divider()
 
 # ─────────────────────────────────────────────
