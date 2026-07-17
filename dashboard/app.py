@@ -68,10 +68,17 @@ st.markdown("""
 # ─────────────────────────────────────────────
 @st.cache_data
 def load_data():
-    import sqlite3
-    conn = sqlite3.connect('data/bird_data.db')
-    df = pd.read_sql_query("SELECT * FROM bird_observations", conn)
-    conn.close()
+    import os
+    # Try CSV first (faster, works on Streamlit Cloud), fallback to SQLite
+    csv_path = 'data/bird_data_clean.csv'
+    db_path = 'data/bird_data.db'
+    if os.path.exists(csv_path):
+        df = pd.read_csv(csv_path, low_memory=False)
+    else:
+        import sqlite3
+        conn = sqlite3.connect(db_path)
+        df = pd.read_sql_query("SELECT * FROM bird_observations", conn)
+        conn.close()
     df['Date'] = pd.to_datetime(df['Date'], errors='coerce')
     df['Year'] = pd.to_numeric(df['Year'], errors='coerce')
     df['Month'] = pd.to_numeric(df['Month'], errors='coerce')

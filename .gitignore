@@ -5,8 +5,7 @@ __pycache__/
 # Ignore output charts
 outputs/*.png
 
-# Ignore cleaned data (we only want raw data in git, or maybe ignore all data if large)
-data/bird_data_clean.csv
-data/*.db
-# If you don't want to upload the 1MB excel files to github, uncomment below:
-# data/*.XLSX
+# Data files - committed so Streamlit Cloud can access them
+# data/bird_data_clean.csv  <-- intentionally tracked
+# data/*.db                 <-- intentionally tracked
+# data/*.XLSX               <-- intentionally tracked
